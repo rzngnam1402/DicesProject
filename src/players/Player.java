@@ -23,4 +23,14 @@ public class Player {
     public String getPlayerName() {
         return playerName;
     }
+
+    public void showDefeat() {
+        System.out.println(this.playerName + ": Oh no, I lost :<<<<");
+    }
+
+    @Override
+    public String toString() {
+        String playerName = this.playerName;
+        return playerName + ": hehe, I won :>";
+    }
 }

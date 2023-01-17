@@ -18,7 +18,7 @@ public class Referee {
         this.name = name;
     }
 
-    public void initializeGame() {
+    private void initializeGame() {
         // initialize dices
         dicesList.add(new Dice1());
         dicesList.add(new Dice2());
@@ -43,11 +43,18 @@ public class Referee {
         for (int i = 0; i < virtualPlayerNumber; i++) {
             playersList.add(virtualPlayersList.get(i));
         }
+
+        System.out.println("Players are ready !!");
+        System.out.println("GAME START !!!");
+        System.out.println("*********************************************************\n\n");
     }
 
     private void nextPlayer() {
-        if (turn >= Game.MAX_PLAYERS)
+        if (turn >= Game.MAX_PLAYERS) {
+            System.out.println("END TURN !!!");
+            System.out.println("---------------------------------------------------");
             turn = 0;
+        }
 
         Player nextPlayer = playersList.get(turn);
         int random = (int) Math.floor(Math.random() * (Game.MAX_DICES));
@@ -55,18 +62,36 @@ public class Referee {
         int newScore = score + nextPlayer.getCurrentPoints();
 
         nextPlayer.setCurrentPoints(newScore <= 21 ? newScore : 0);
+        System.out.println(nextPlayer.getPlayerName() + " rolled " + score);
+        System.out.println(nextPlayer.getPlayerName() + "'s new score: " + newScore + "\n");
 
         if (nextPlayer.getCurrentPoints() == 21) {
             isGameOver = true;
+            String winner = nextPlayer.toString();
+            System.out.println(winner);
+
+            for (Player player : playersList) {
+                if (player.getCurrentPoints() != 21) {
+                    player.showDefeat();
+                }
+            }
             return;
         }
         turn++;
+    }
+
+    public void gameOver() {
+        System.out.println("GAME OVER !!");
+        System.out.println("-----------------------------------------------------------");
     }
 
     public void start() {
         initializeGame();
         turn = 0;
         isGameOver = false;
+        while (!isGameOver) {
+            nextPlayer();
+        }
+        gameOver();
     }
-
 }
