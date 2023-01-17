@@ -22,7 +22,7 @@ public class Dice implements Rollable {
         // TODO Auto-generated constructor stub
     }
 
-    public void roll() {
+    public int roll() {
         Random random = new Random();
         int sum = ratioList.stream().reduce(Integer::sum).get();
         int start = 0;
@@ -32,10 +32,10 @@ public class Dice implements Rollable {
             int ratio = ratioList.get(i);
             bound += ratio;
             if (ran >= start && ran < bound) {
-                System.out.println(i + 1);
+                return i + 1;
             }
             start += ratio;
         }
+        return -1;
     }
-
 }

@@ -1,8 +1,8 @@
 package referee;
 
 import dices.*;
-import players.*;
 import game.Game;
+import players.*;
 
 import java.util.ArrayList;
 
@@ -10,16 +10,15 @@ public class Referee {
     private final ArrayList<Player> playersList = new ArrayList<Player>();
     private final ArrayList<VirtualPlayer> virtualPlayersList = new ArrayList<VirtualPlayer>();
     private final ArrayList<Dice> dicesList = new ArrayList<Dice>();
-
-    private int turn = 0;
     public String name;
+    private int turn = 0;
     private boolean isGameOver;
 
     public Referee(String name) {
         this.name = name;
     }
 
-    public void initialize() {
+    public void initializeGame() {
         // initialize dices
         dicesList.add(new Dice1());
         dicesList.add(new Dice2());
@@ -46,14 +45,28 @@ public class Referee {
         }
     }
 
+    private void nextPlayer() {
+        if (turn >= Game.MAX_PLAYERS)
+            turn = 0;
+
+        Player nextPlayer = playersList.get(turn);
+        int random = (int) Math.floor(Math.random() * (Game.MAX_DICES));
+        int score = dicesList.get(random).roll();
+        int newScore = score + nextPlayer.getCurrentPoints();
+
+        nextPlayer.setCurrentPoints(newScore <= 21 ? newScore : 0);
+
+        if (nextPlayer.getCurrentPoints() == 21) {
+            isGameOver = true;
+            return;
+        }
+        turn++;
+    }
+
     public void start() {
-        initialize();
-
+        initializeGame();
+        turn = 0;
         isGameOver = false;
-
-        Dice dice1 = new Dice("100:0:0:0:0:0");
-
-        dice1.roll();
     }
 
 }

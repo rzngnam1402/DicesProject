@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9dea514e-7456-4578-aa73-e3d75bda3123" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/classDiagram.asta" beforeDir="false" afterPath="$PROJECT_DIR$/Design/classDiagram.asta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dices/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dices/Dice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dices/Dice1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dices/Dice1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dices/Dice2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dices/Dice2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dices/Dice3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dices/Dice3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dices/Dice4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dices/Dice4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Rollable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Rollable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/referee/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/referee/Referee.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
