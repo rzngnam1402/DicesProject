@@ -1,26 +1,36 @@
 package referee;
 
-import game.Game;
+import dices.*;
 import players.*;
+import game.Game;
 
 import java.util.ArrayList;
 
 public class Referee {
     private final ArrayList<Player> playersList = new ArrayList<Player>();
+    private final ArrayList<VirtualPlayer> virtualPlayersList = new ArrayList<VirtualPlayer>();
+    private final ArrayList<Dice> dicesList = new ArrayList<Dice>();
+
+    private int turn = 0;
     public String name;
-    private final ArrayList<VirtualPlayer> virtualPlayerList = new ArrayList<VirtualPlayer>();
     private boolean isGameOver;
 
     public Referee(String name) {
         this.name = name;
     }
 
-    public void start() {
+    public void initialize() {
+        // initialize dices
+        dicesList.add(new Dice1());
+        dicesList.add(new Dice2());
+        dicesList.add(new Dice3());
+        dicesList.add(new Dice4());
+
         // initialize virtual players
-        virtualPlayerList.add(new VirtualPlayer1());
-        virtualPlayerList.add(new VirtualPlayer2());
-        virtualPlayerList.add(new VirtualPlayer3());
-        virtualPlayerList.add(new VirtualPlayer4());
+        virtualPlayersList.add(new VirtualPlayer1());
+        virtualPlayersList.add(new VirtualPlayer2());
+        virtualPlayersList.add(new VirtualPlayer3());
+        virtualPlayersList.add(new VirtualPlayer4());
 
         // initialize players
         Player player1 = new Player("Peter");
@@ -32,8 +42,18 @@ public class Referee {
 
         int virtualPlayerNumber = Game.MAX_PLAYERS - playersList.size();
         for (int i = 0; i < virtualPlayerNumber; i++) {
-            playersList.add(virtualPlayerList.get(i));
+            playersList.add(virtualPlayersList.get(i));
         }
+    }
+
+    public void start() {
+        initialize();
+
+        isGameOver = false;
+
+        Dice dice1 = new Dice("100:0:0:0:0:0");
+
+        dice1.roll();
     }
 
 }

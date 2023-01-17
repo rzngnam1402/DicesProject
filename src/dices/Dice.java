@@ -1,15 +1,13 @@
 package dices;
 
+import game.Rollable;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class Dice {
-    public static final int MAX_DICE_FACE = 6;
-    public static final double LOW_RATE_DICE = 0.16;
-    public static final double HIGH_RATE_DICE = 0.2;
-
+public class Dice implements Rollable {
     List<Integer> ratioList;
 
     public Dice(List<Integer> ratioList) {
@@ -24,7 +22,7 @@ public class Dice {
         // TODO Auto-generated constructor stub
     }
 
-    public int getSelectIndex() {
+    public void roll() {
         Random random = new Random();
         int sum = ratioList.stream().reduce(Integer::sum).get();
         int start = 0;
@@ -34,15 +32,10 @@ public class Dice {
             int ratio = ratioList.get(i);
             bound += ratio;
             if (ran >= start && ran < bound) {
-                return i;
+                System.out.println(i + 1);
             }
             start += ratio;
         }
-        return -1;
     }
 
-    public int rollDice() {
-        Dice rris = new Dice("20:16:16:16:16:16");
-        return rris.getSelectIndex();
-    }
 }
